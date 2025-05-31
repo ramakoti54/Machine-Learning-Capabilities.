@@ -58,15 +58,15 @@ The total Embedding encoded factor value is defined as
 
 Examples:
 ========
-	Doc1(d1)						Doc2(d2)
+	Doc1(d1)					     Doc2(d2)
 	=======					             =======
   Term		Count					Term		Count
   ====		=====					====		=====
-  This		 1					  this		  1
-  Is		   1					  is		    1
-  A		     2					  a		      2
-  While		 2					  while		  2
-		  					        Example	  3
+  This		 1					this		  1
+  Is		 1					is		  1
+  A	         2					a		  2
+  While		 2					while		  2
+		  				        Example	          3
 
 TF f('this',d1)= ⅕ =0.2
 TF f('this',d1)= 1/9 = 0.11
