@@ -1,0 +1,133 @@
+Abstract:
+      Plan is to present a paper on Stock price prediction process using significant features to impact performance of the stock based on the sentiment analysis. 
+      The trend on social media includes the classification of current sentiment on specific domains of the stock presence. There had been multiple classification labels 
+      to define the sentiment of these stocks with Positive, Negative and Neutral being some of them.
+	
+Implementation Algorithm Plans:
+      Bayesian network with MCMC sample for posterior distribution.
+CNN
+RNN/VAN or GAN check the best suited Neural Network with Encoding options.
+Clustering approach
+MCMC finding posterior distribution for sending as an input to Bayesian technique to find the posterior probability of the distribution to classify the given label 
+belongs to one of the classifiers.
+
+MCMC:
+g(x) ~ f(X) where x >0 and x ~ X for all possible combinations of x with aperiodicity and 
+ 					independent sample members of X.
+
+f(X) is a probabilistic distribution of size n and all of those members are having values greater than 0.
+
+Apply a Metropolis- Hastings theorem to find the posterior distribution sample from the given Distribution.
+
+
+Algorithm to Build an ML Model for Sentiment Analysis:
+	
+Gather data from various news paper articles and social media websites to form text files about a specific stock on Banking and Finance sectors. Collect inputs and transfer 
+the information as input to form a specific Machine Learning Model with two major approaches
+
+N- Gram and 2. SepCNN
+
+N-Gram:
+	N-Gram is a sequence of word representations to form tokens from the given textual information documents. Building tokens using single word of a sentence called 1-Gram,  
+  the same applies for 2-Gram if there are two words used to form a token and tri-Gram or 3-Gram represents three word tokens from a sentence. The same holds true for all 
+  distinct Grams for a maximum token length of N in case of N-Gram.
+
+  The collected input data must be segregated to multiple samples to form a ratio of number of samples in the dataset to the number of words in each individual sample. 
+  The ratio is used as a condition to identify the Machine Learning model to be used for predicting the sentiment impact on the stock price as either positive, negative or neutral. 
+
+Model1:
+    Select N-Gram model to perform tokenization and vectorization on the given sample of words using one of the encoding techniques either one-hot encoding or tf-idf embedding 
+    encoding if the ratio of number of samples to number of words in a sample is less than 1500.
+    Perform vectorization to find the tokens in N-Gram model input and find the total significant 20k tokens from the vectorization using normalization process.
+    Build an MLP(multi layer perceptron) Machine Learning model to perform analysis to generate Sentiment Analysis.
+
+TF-IDF Embedded Encoding:
+    Term frequency Inverse Document Frequency (TF-IDF) embedding encoding technique is used to identify the encoded number to represent token(term) significance out of all 
+    tokens present in a sentence. The Term frequency is a major factor in deciding the token to be used in ML model to train to form an optimized inforance model to predict 
+    results. The general Term frequency of the word documents input is defined as ratio to the frequency of terms present in a document to Total number of words from the document.
+    
+    TF  f(t,d1) = Term frequency of in a document/Total number of words from Document.
+
+    IDF f(t,d,D) = log(N/D)  N= Total number of terms in a corpus.
+		  	 D = Number of Document sets in a term.
+
+    The total Embedding encoded factor value is defined as
+			TF-IDF = TF  f(t,d1) * IDF f(t,d,D)
+
+    Examples:
+
+      Doc1(d1)						Doc2(d2)
+      =======					             =======
+      Term		Count					Term		Count
+      ====		=====					====		=====
+      This		  1					  this		  1
+      Is		    1					  is		    1
+      A		      2					  a		      2
+      While		  2					  while		  2
+			      				        Example	  3
+
+    TF f('this',d1)= ⅕ =0.2
+    TF f('this',d1)= 1/9 = 0.11
+    IDF f('this',d1)= log(2/2) = 0
+    IDF f(‘this’,d2) = log(2/1) = 0.301
+
+    tf-IDF(‘this’,d1,D) = 0.2 * 0 = 0
+    tf-IDF(‘this’,d2,D) = 0.11 * 0 = 0
+    tf-IDF(‘example’,D) = 1
+    tf(‘example’,d1,D) = 0/5 = 0
+    tf(‘example’,d2,D) = 3/9 = 0.34
+    tf-IDF(‘example’,d1,D) = 0.301 * 0 = 0
+    tf-IDF(‘example’,d2,D) = 0.301 * 0.34 = 0.10234  – this is the value to be represented in 
+    vectorization mode.
+    TF-IDF embedded values decide the encoded representation in numeric form to identify significance of specific tokens from several documents. These tokens try
+    to convey a message to the stakeholder about the stock business growth factor for the banking and financial stocks. If the analysis of the message outcome results 
+    in positive, the next factor of Bayesian MCMC method is applied to find out the maximum likelihood of the stock to be grown in future. Based on the result 
+    probability crosses the expectation the stock is recommendable to stakeholders for purchasing it.
+
+    In case of a negative outcome from the above approach, the reasons are demonstrated to the stakeholders to discuss potential risk factors in decline of the stock. 
+    The future outcomes should be represented with mitigation factors and allowable changes to be implemented to alter the price factors to make it a potential buying option.
+
+Sep CNN:
+        Depth Wise separable Convolutional neural networks (Sep CNN)	 selected as a Machine learning model to be implemented in case the ratio for number samples to number
+        of words in a sample for document exceeds 1500. 
+
+
+Model2:
+        Select Sep CNN model to perform tokenization and vectorization on the given sample of words using one of the encoding techniques either one-hot encoding or tf-idf 
+        embedding encoding if the ratio of number of samples to number of words in a sample exceeds  1500.
+        Perform vectorization to find the tokens in sep CNN model input and find the total significant 20k tokens from the vectorization using normalization process.
+        Build an sep CNN  Machine Learning model to perform analysis to generate Sentiment Analysis.
+        Choose to build the RNN/GAN/VAN models(optional) based on acceptability factors rather than a simple Sep CNN to identify the best one among those models.
+        Implement MCMC method and Bayesian Statistical analysis methods to find the posterior probability for identifying the relevant features impact on the price of stock.
+
+        Use Hyperparameters tuning as the major feature engineering principle to optimize ML models.
+
+        Types of models to be considered for classification of sentiment labels from tweets of X and comments of Meta.
+
+        Logistic Regression with Softmax, Gradient Boosted trees
+        
+        Support Vector Model
+        Simple Multi layer perceptron (MLP’s)
+
+        Overview of Implementation for N-Gram Model:
+        Implementation of an ML model to process Natural human language try to find insights from the comments or tweets through sentiment analysis gives broader understanding 
+        about the nature of the market for the specific stock. It helps to drive the price prediction process further from the inception to the current value. The price could 
+        be mostly relevant to positive and neutral comments/tweets however the negative comments/tweets about stock could lead to potential decline of the price. The N-Gram 
+        model could be implemented with the help of following custom-built python libraries.
+
+        Module to represent N-Gram model.
+            Reading the content of an internet twitter/meta comments from applications.
+            Storing the acquired information in word document?
+            Making the reading from websites work in python
+            Try to understand about python modules to implement for learning from X, tweets and federal reserve bank decisions on economic policies such as inflation rates 
+            update, foreign policy changes on economic cycles, tariff raise and decline impacts etc…
+            Stock quarterly/annually/adhoc updates from the company with percentage of change in revenue, growth factor etc…
+            The major policy shift due to technological shifts around the world and impact on the specific industry or business area the stock is located.
+            P&L statement of the company over multiple years based on the performance and future growth factor of the stock.
+
+        Implementation plan in Python
+            Understand about Urllib and Web modules.
+            Write code in python using them to copy the html files data from various websites like X, meta, Organizations P&L representation websites, Organizations 
+            Quarterly,Yearly, Ad Hoc growth change factors representation websites, Foreign economic policy shifts and Federal Reserve websites.
+            Load the data from those html files to word documents.
+            Process the word documents data using the pycharm module of python.
