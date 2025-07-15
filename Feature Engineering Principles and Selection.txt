@@ -1,0 +1,118 @@
+********  Feature Engineering Principles and Selection  *********
+
+  Feature Engineering methods are multitude of mathematical operations (An array of techniques) helpful to apply on supervised, unsupervised, semi supervised and reinforcement ML models to optimize them in standard normalizing
+  dataset prior to applying training and simulations. These features aid the ML model to raise the efficacy of the model by optimizing input data samples.
+
+  Features Engineering principles help to develop various data transformations to extract data features. These principles are similar in nature if they belong to the same data class and dissimilar otherwise.
+
+    The feature engineering principles are several types such as 
+    1. Feature Selection methods  2. Histogram  3. Clustering  4. Principal component analysis
+ (PCA)
+
+  Histogram:
+            Histogram is a group of features represented with buckets and each bucket is of size n and frequency m. These buckets are of either symetric or Asymmetric in nature.
+Symmetric histograms consist of the size of each bucket remains same and frequency of each bucket varies on the vertical axle and depends on features present in the bucket. Histogram bins are useful in representation of textual, image, audio and categorical datasets.
+
+Asymmetric histograms contain distinct size buckets in representing features of multiple principles. The following diagrams show the importance of both of these variations.
+
+In the following diagram fig 1.0 represents the population of multiple regions include, Delhi, Bangalore, Hyderabad and Chennai. The bars in histogram are symmetrical in nature with equal width population frequency measures. All of the cities had  population numbers represented on the  Y-axis in Millions and city names with colour codes depicted on the X-axis.
+
+
+		Fig 1.0  Illustration of Regional population(Couldn't show the images in figures here due to limitation of showing images on github content. Visit the shared link for access to understand about the Feature engineering principles).
+
+URL for Drive access for requesting view access: 
+                https://docs.google.com/document/d/1SAJlFKia_XzMZm6oB361M5D7mZvDGTOnkxRiY6DQrY0/edit?usp=sharing
+
+Asymmetric nature of the histogram for the same example shown in the following diagram. The illustration of population sizes for both North and South region cities illustrated over the histogram bars with different width bars to represent city names and the separated based on the distinct width of each bar. The first bar to second bar had been a width of two and the next with three and the last separates from the previous one with two in size.  
+
+Feature Selection:
+		Human Interaction plays an important role in machine learning models to identify the components of the model and find logic to integrate them into a complex configuration for using them in Organizations. Feature selection is supervised-learning one of such approach helps to shrink size of dimensionality (Reduces from 3D to 2D) and removes unrelated features and keeps the prominent features to optimize models with low computations.
+
+Principle component analysis (PCA) approach aids to reduce dimension of the input dataset to optimize features and training ML models in both Supervised and Un-supervised along with Semi supervised, Reinforcement Generative AI models.
+
+Historical features of Categorical Data:
+		Histogram represents both symmetric and Asymmetric types of data. The relative ML models deals with distinct data types includes text, categorical, image and Audio types.
+
+Categorical dataset is a type which allows ML(applications) model to deal with Qualitative selection of the data. It Describes about features through Non-numeric representation. 
+For Instance, consider the blood type of a sampled population in blood donation camp. Generally to represent Blood pressure, weight, blood levels use numerical values while communicating by medical professionals. These blood checks could help to determine the blood is usefulness for other patients in the hospital. 
+
+However, blood type is represented with categorical data types with alphabets O, A, B and AB with both positive and negative to differentiate the polarization of blood. These represent normal assigning values and each categorical label is associated with a numeric value to understand about the relation among each of the types.
+
+Blood type				Representation
+========				============
+O					      0
+A					      1
+B					      2
+AB					    3
+
+O			A			B			AB
+ ._________________._________________.__________________.
+|			|                                   			   |	
+	|           close/similar	|                                   			   |
+| —-------------------------- 		Distinct/Dissimilar		   |	
+|------------------------------------------------------------------------------------------|
+
+			Fig 3.0 Categorical Data types First representation.
+  
+O			A			AB			B
+ ._________________._________________.__________________.
+|			|                                   |			   	
+	|           close/similar	|                                   |			   
+| —-------------------------- Distinct/Dissimilar     |	
+|---------------------------------------------------------- |
+
+Fig 4.0 Categorical Data types with second representation
+
+
+As mentioned in both Fig 3.0 and Fig 4.0 categorical data could be represented in multiple ways but the meaning of the data makes it complex to understand by the reader to create consistency of the dataset.
+
+Hence, there is another precise way of representing categorical data through histogram based approach called one-hot encoding.
+
+One-hot encoding is an approach consists of vectors and multitude of arrays(matrices) to represent one categorical value to be highlighted at a time by replacing other dimensional features with zero(0).
+
+O	1	0	0	0
+A	0	1	0	0
+B	0	0	1	0
+AB	0	0	0	1
+	O	A	B	AB
+
+
+Histogram Features of Text Data:
+		Histogram features for textual data illustrated with a feature representation vector called as feature vector or Bag of Words(BOW).
+
+BOW feature vector used to store textual linguistic words from sentences of textual dataset. Usually, BOW vector stores significantly impactful words of the text from the sentences to simplify the process of computations.
+
+In Bow representation feature vectors assigned with respective frequency counts to represent each linguistic word.
+For instance, consider two sentences to process for ML models are
+The Dogs are best pets.
+The Cats are worst pets.
+
+Two of the sentences are formed in the maintenance of animals(pets) at home and consider BOW vectors as
+Cats - 1/sqrt(3)			- 0
+
+Dogs - 0				- 1/sqrt(3)
+
+Best - 0				- 1/sqrt(3)
+
+Worst - 1/sqrt(3)			- 0
+
+Pets - 1/sqrt(3)			- 1/sqrt(3)
+=========				=========	
+  X(input)				XT(input)
+=========				=========
+
+The input X features are assigned with a BOW feature input value 1/sqrt(3) since three features are significant in first vector and distinct three words are important in the latter.
+
+XT is the transpose vector used to represent the second sentence. Always the inner product of these vectors lies between 0 and 1. Hence the correlation among these features is identified based on the inner product relation. 
+
+Considering pets as a significant words statements has a co-relation factor of 0.33 (1/sqrt(3)*1/sqrt(3)) to leave the cofactor value in less than half of the statement symmetry.
+Bow vectors becomes symmetrical if we have statements as 
+“some Dogs are smarter than cats and some Cats are smarter than Dogs”.
+
+Dogs		-1/sqrt(2)	-0
+Cats		-0		-1/sqrt(2)
+Smarter	-1/sqrt(2)	-1/sqrt(2)
+
+The above statement has a better co-relation factor value of 1. The adjective describing both of the animals as smarter in some situations would give the same correlation while considering one animal at the same time.
+
+Bow representation is hugely used in realtime Machine Learning applications like spam detection NLP processing and LLM feature analysis techniques, categorization of emails, news articles and social media posts etc…
