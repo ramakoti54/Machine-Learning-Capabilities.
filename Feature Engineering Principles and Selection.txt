@@ -17,7 +17,6 @@ Asymmetric histograms contain distinct size buckets in representing features of 
 
 In the following diagram fig 1.0 represents the population of multiple regions include, Delhi, Bangalore, Hyderabad and Chennai. The bars in histogram are symmetrical in nature with equal width population frequency measures. All of the cities had  population numbers represented on the  Y-axis in Millions and city names with colour codes depicted on the X-axis.
 
-
 		Fig 1.0  Illustration of Regional population(Couldn't show the images in figures here due to limitation of showing images on github content. Visit the shared link for access to understand about the Feature engineering principles).
 
 URL for Drive access for requesting view access: 
@@ -116,3 +115,52 @@ Smarter	-1/sqrt(2)	-1/sqrt(2)
 The above statement has a better co-relation factor value of 1. The adjective describing both of the animals as smarter in some situations would give the same correlation while considering one animal at the same time.
 
 Bow representation is hugely used in realtime Machine Learning applications like spam detection NLP processing and LLM feature analysis techniques, categorization of emails, news articles and social media posts etc…
+
+Example 1: Histogram features for Sentiment Analysis:(An example of Textual Data)
+	Another interesting area for Histograms to illustrate the behaviour of feature methods is through performing analysis on the vast majority of subject areas includes banking, finance domains. The sentiment analysis is a classified method to demonstrate results on different domains through social network comments, providing feedback through forms to result into either positive, negative or neutral sentiment.
+
+For example, consider 
+
+“Cricket is the greatest sport of all times mentioned by the legend of cricket in 1930’s called Don Bradman. He is well known for his most number of centuries in fewer games.”
+“Baseball is another sport that significantly impacts many sportsmen across northern America. It is played similar to Cricket.”
+
+The two statements seem distinct in nature but they do have a co-relation while impacting the sportsmen life around the world. The mutual dependency between two scenarios are quite slim compared to the earlier example in textual data of Histogram features. The Classification of two statements depends on the label prediction requirements of these statements.
+
+
+BOW for statement 1:
+
+1/14 - 0
+
+Cricket great sport time mention legend don bradman well know most centuries few games
+
+BOW for statement 2:
+
+0- 1/11
+
+Baseball another sport significant impact sportsmen across Northern-america played similar cricket
+
+While considering the co-relation among the two statements the number of bow features from the statement 1 shows as 14 and is considered as 11 in the second statement. The total probability for computing the BOW significance for the statement 1 is computed as 1/14 while other statements have no significance to represent them in eigen vectors. The same holds 1/11 for the statement 2 while considering the BOW eigen vector.
+
+The dot product of these two feature vectors gives a coefficient value of (1/14 * 1/11 = 0.080) and the value stays between 0 and 1.
+
+Based on understanding about these two statements they can be classified as least co related among the BOW feature examples.
+
+The co-relation among these statements can be represented with a sine and cosine curve as shown below.
+
+
+
+Example 2: Spam Detection (Example of Histogram feature for Textual Analysis.):
+		Spam related web content has grown over the years and major industries use the feature engineering principle in the current world. The examples include google’s email chain with a spam detection process to identify and classify the email to be assigned to the spam folder, The user notification process in networking communication by carriers to send text messages to their customers with unlimited data/roaming data offers with non-existed links.
+Generally, BOW identifies if the email is either spam or another class label. BOW lists the words like bargain, act now, urgent, time constraint etc.. could be used in forming softmax cost function.
+
+Additionally, classification features include class features, char word count and spam detection features etc… improves the performance of machine learning spam detection methods.
+
+The process can be illustrated through a diagram here.
+
+The Hyperlink to access the diagrams and tables of the content shown below.
+
+URL: https://docs.google.com/document/d/1o8e7nFryFLEafNwMDq7OcOJEKDP2pUcp/edit?usp=sharing&ouid=110429265379294196744&rtpof=true&sd=true
+
+
+
+
