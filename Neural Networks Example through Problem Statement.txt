@@ -1,0 +1,101 @@
+Problem Statement:
+Scenario: 
+Recall company “X,” from Module 1, that was trying to boost sales through a digital marketing campaign? They developed a new digital marketing strategy for their products that they believe will net them the most sales. Their marketing team now wants to improve their customer targeting strategy. Still, they do not know which demographic to focus on. They surveyed people who bought or rejected their product in the past and collected each person’s age, income, gender, and marital status (A representative example shown in table). Using this information, the team wants to know:
+1. Given a person’s profile, will they buy their product or not?
+2. People from which demographic are more likely to buy their product?
+
+Ans:
+     Perceptron in neural networks deals with the projection of a feature datapoint onto the perpendicular plane from the source point. The projection always finds a distance projection of the point from the decision boundary. The distance of the perceptron is computationally defined with the following formula.
+			D = (XTw + b)/||w|| —->(1) Distance between the feature point and its projection (X-X') The simple way of representing is through the perceptron function to define the feature vector to its magnitude of weights association for each of the features.
+
+The distance defines the support vector existence from the decision boundary of the data points of a given sample. We need to identify two support vectors of such a sample to classify the labels of the product purchase operation as either Buy or NoBuy.
+
+Another way of approaching the same problem is through Neural Networks. The feature vector could be represented with the features from x1 x2 x3x4  with x1 x2 x3  and x4 with multiple features with each of those features with more than one type include 3, 3, 2 and 2 respectively.
+
+The output label needs to be predicted for the feature Bought based on these input features along with assigned weights to find out the hidden layer output(intermediate result) H1H2 H3 H4 … H8 etc.. 
+All the Hidden layer outputs are computed with the function  Hi = P=1n(XPw + b) —> (1)
+The final result is computed with an activation function Yj = P=1n(HPw + b) —> (2)
+
+Let’s consider initial inputs to the Neural networks as following
+
+X1 = age group = [ranges from 18 to 29,between 30 and 50,above 50] —with three possible
+        values for the feature.
+
+X2 = Income group = [salary less than 100k, salary in between 100k and 300k, salary greater
+        than 300k] – with three possible values for the feature.
+
+X3 = Gender = [Male,Female]  – Two possible options for person’s gender.
+X4 = Marital Status = [Married,UnMarried] – Two possible options for Marital status of the 
+         person.
+
+Assign a weights vector to compute each of the input feature product with the assigned weight 
+
+wi = [2,2,2] wj = [2,2]
+
+Based on the inputs from the neural network we can compute the hidden layer outputs as follows.
+
+H1 = X1wi1 +b1   H2  = X1wi2+b2    H3= X1wi3 + b3 
+
+H4 = X2wi1 +b1   H5 = X2wi2+ b2     H6=X2wi3 + b3
+
+H7 = X3wi1 +b1  H8= X3wi2+b2    
+
+H9=  X4wi1 + b1  H10 =  X4wi2 + b2 
+
+
+
+
+Once the outputs are generated in the hidden layer the Neural network layer passes through another layer with newly assigned weights to optimize the results of the prediction labels for the classifier  Yj .
+
+
+The classifier of the hidden layer is illustrated with following results for each of the hidden layer outputs.
+
+Yj  = H1wa + H2wb+H3wc+H4wd + H5we + H6wf+H7wg+H8wh+H9wi +H10wj+𝛽 —> output classifier deciding prediction probability. If the result of the computation stays below the saturated limit (need to train the neural network through simulations to find the best factor lies between 0 and 1.) assumption we can find the output label for purchasing a product by the specific individual.
+
+
+Python Implementation:
+
+Import numpy as np;
+Import pandas as pd;
+Import ndarray as nd;
+Import scikit-learn as sck;
+Import pyplot as plt;
+
+
+Class Neural_Network_Implementation:
+   
+   Def NN_Implementation(X,W):
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NN_Imp = Neural_Network_Implementation();
+#X1 = [‘age between 18 and 29’,’age between 30 and 50’,’age above 50’]
+#X2 = [‘income group less than 100k’,’income group between 100 and 300k’,’income group #greater than 300k’]
+#X3 = [‘male’,’female’]
+#X4 = [‘married’,’unmarried’]
+
+X1_18_29 = [0,1,0];
+X1_30_50 = [0,0,1];
+X1_AB_50 = [0,0,1];
+
+X2_income_lessthan_100k = [0,1,0];
+X2_income_100k_300k = [1,0,0];
+X2_income_AB_100k = [0,0,1];
+X3_Male = [1,0,0];
+X3_Female = [0,1,1];
+X4_Married = [1,0,1];
+Input_Features = [X1_18_29,X1_30_50, X1_AB_50,X2_income_lessthan_100k,X2_income_100k_300k, X2_income_AB_100k,X3_Male,X3_Female, X4_Married];
