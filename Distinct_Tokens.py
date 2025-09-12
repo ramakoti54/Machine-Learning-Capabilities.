@@ -61,7 +61,7 @@ tokens =['The','mouse','ran','down','the','hill'];
 # each token from the matrix.
 # Assigning default integer values for using as intermediate calculations in the recursive function and count functions for finding the probability of existence of each word based on the freequency of
 # repetitions in the sentence/document/file/content file.
-encryption = [[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0],[0,0,0,0,1,0],[0,0,0,0,0,1]]
+encryption = [[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0],[0,0,0,0,1,0],[0,0,0,0,0,1]];
 i = 0;
 j = 0;
 k = 1;
