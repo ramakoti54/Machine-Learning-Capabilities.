@@ -1,0 +1,99 @@
+******* Taylor Series Approximation for Second Order Optimization method *******
+
+Procedure:
+Step 1: Optimization method for Taylor Series approximation works to identify behaviour of the curvature at a given point v. The current point (v) defines the nature of the curve to be either convex or concave based on the constant vaue 'C' is non-negative or non-positive.
+
+The second order optimization method aid to find the curve significantly in understanding about all the points related to.
+1. Convexity
+2. Concavity
+3. Saddle points/Inflection points
+4. Neither convex nor concave points
+
+1. Convex: The Taylor-series approximation for Single input Qudratic function
+g(w) at a given point v depicts the behaviour of the functional curve based on the constant of the function as shown in the following equation.
+
+g(w) = a+bw+cw^2. ----> (1)
+
+The equation(1) represents the functional curve in the equation, constant 'c' aid to decide the curvature of the function through out the curve. The value of c is non-negative defines curve as convex in nature.
+
+2. Concave: The value of 'c' is non-positive defines curve as concave in nature.
+The curve illustration is from downwards from the axile to be represented in 3D.
+
+3. Saddle points are the points where the constant c of a function becomes both negative and positive. The behaviour of the curve changes from convex to concave at the given point v. The point is also known as inflection point of the curve.
+4. Stationary points represents the demonstration of local minima/global minima of the function where the nature of the curve becomes almost plato. The stationary point where there will be no more change in behaviour of the curve. At this point the curvature of the function becomes neither convex nor concave in nature.
+
+The Second order optimization method for Taylor series approximation for multi variable qudratic functions as
+
+g(x) = a+ b^T * w + w^T *C*w ----->(2)
+
+The equation(2) represent the functional curve in the equation, constant 'c'
+aid to decide the curve nature at a point v. The equation of the function becomes
+
+g(v) = a + d(g(v))/dx * (w-v) + (1/2)*d^2(g(v))/dx^2*(w-v)^2 ---->(3)
+
+The function represents the behavour of the curve as convex if the constant 'c' values are non-negative and concave otherwise.
+
+cost function for the Taylor series second order derivative follows the below condition.
+Least squares cost function for computing Functional Minima at lower convex point
+=============
+g(w,v) = [(sigma i 1 to n(sigma p 1 to K(g(v_current point) + d(g(v_i))/dx *(w_p-v_i)+(1/2)*d(g(v)^2)/dx^2*(w_p-v_i)^2)))^2]
+
+Logerthemic error function
+==========================
+g(w,v) = [(sigma i 1 to n(sigma p 1 to K(log(g(v_current point)) + log( d(g(v_i))/dx *(w_p-v_i))+(1/2)*log(d(g(v)^2)/dx^2*(w_p-v_i)^2))))^2]
+
+Manual way of solving an equation to represent the Eigen equation to resolve the eigen values of the Second Order derivative function.
+
+     AX = lX => (A-lI)X = 0 where X is an eigen vector and l represents the eigen values once we implement a manual approach of solving the equation we get the following eigen equation to resolve eigen values and eigen vector as follows.
+g(w) =  w^3 -15w^2 + 59w -225 = 0 -----> (I)
+
+w1 = 11.58342 w2 = 1.70829 + 4.06277i   w3 = 1.70829 - 4.06277i
+
+Functional Derivative function for both First order and Second Order Taylor Series Approximations
+====================================================================
+First Order functional values are as follows.
+g(x) = a + b*w + C*w^2 => b+ 2*C*w;
+
+Seond Order functional values are:
+g(x) = a + b*w + C*w^2 ==> b+2Cw => 2*C;
+=====================================================================
+
+
+import tensorflow as tf;
+#import tensorflow.keras as ks;
+import numpy as np;
+import pandas as pd;
+import matplotlib.pyplot as plt;
+import autograd as ad;
+import tensorflow as tf;
+from tensorflow import linalg as linalg;
+import re;
+#*********** Taylor Series Approximation with Single Variable Quadratic form *********
+#*********** The form of the equation is g(v) = a+bv+cv^2 **********
+#*********** The optimization method would help in optimizing the curvature behaviour *******
+#*********** following minimum number of operations to be required for the model.    ********
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
