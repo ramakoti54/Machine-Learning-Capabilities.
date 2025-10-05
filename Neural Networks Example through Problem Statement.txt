@@ -52,50 +52,7 @@ The classifier of the hidden layer is illustrated with following results for eac
 
 Yj  = H1wa + H2wb+H3wc+H4wd + H5we + H6wf+H7wg+H8wh+H9wi +H10wj+𝛽 —> output classifier deciding prediction probability. If the result of the computation stays below the saturated limit (need to train the neural network through simulations to find the best factor lies between 0 and 1.) assumption we can find the output label for purchasing a product by the specific individual.
 
-
-Python Implementation:
-
-Import numpy as np;
-Import pandas as pd;
-Import ndarray as nd;
-Import scikit-learn as sck;
-Import pyplot as plt;
-
-
-Class Neural_Network_Implementation:
-   
-   Def NN_Implementation(X,W):
-      
+The Python Implementation for the same is described in the python document in the same folder as "Neural_Networks_Implementation_Recursive.py".
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-NN_Imp = Neural_Network_Implementation();
-#X1 = [‘age between 18 and 29’,’age between 30 and 50’,’age above 50’]
-#X2 = [‘income group less than 100k’,’income group between 100 and 300k’,’income group #greater than 300k’]
-#X3 = [‘male’,’female’]
-#X4 = [‘married’,’unmarried’]
-
-X1_18_29 = [0,1,0];
-X1_30_50 = [0,0,1];
-X1_AB_50 = [0,0,1];
-
-X2_income_lessthan_100k = [0,1,0];
-X2_income_100k_300k = [1,0,0];
-X2_income_AB_100k = [0,0,1];
-X3_Male = [1,0,0];
-X3_Female = [0,1,1];
-X4_Married = [1,0,1];
-Input_Features = [X1_18_29,X1_30_50, X1_AB_50,X2_income_lessthan_100k,X2_income_100k_300k, X2_income_AB_100k,X3_Male,X3_Female, X4_Married];
