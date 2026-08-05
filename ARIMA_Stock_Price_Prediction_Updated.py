@@ -26,11 +26,11 @@ class ARIMA_Stock_Price_Prediction:
          #   i = i+1;
          #   break;
          #elif(i == 1 or i ==2):
-         order_previous = order;
+         #order_previous = order;
          #print("Result DF is: ",endog[1]);
          try:
             #model = self.Differencing(endog,order,order_previous,order_list);
-            #model = SARIMAX(endog, order=(list(endog[1]),d,list(order_list)),simple_differencing=False).fit(disp=False);            
+            #model = SARIMAX(endog, order=(list(endog[1]),d,list(order_list)),simple_differencing=False).fit(disp=False);
             model = SARIMAX(endog,order=(3,d,3),simple_difference=False,enforce_stationarity=False,enforce_invertibility=False).fit(disp=False);
             #print("Model values are: ",model.summary());
          except:
@@ -45,9 +45,9 @@ class ARIMA_Stock_Price_Prediction:
       #result_df = result_df.sort_values(by='AIC',ascending=True).reset_index(drop=True);
       #print("\n\n Result Data Frame is: \n\n====================\n",result_df)
       print(model.summary());
-      model.plot_diagnostics(figsize=(10,8));
-      residuals = model.resid;                                        
-      #lbvalue, pvalue = 
+      model.plot_diagnostics(lags=6,figsize=(10,8));
+      residuals = model.resid;
+      #lbvalue, pvalue =
       print(acorr_ljungbox(residuals, np.arange(1, 11, 1)));
       #print(pvalue,lbvalue);
       return (None);
@@ -74,7 +74,7 @@ class ARIMA_Stock_Price_Prediction:
       print(f'ADF Statistic: {ad_fuller_result[0]}')
       print(f'p-value: {ad_fuller_result[1]}')
       return(None);
-   
+
    def standard_Normalizer(self,x):
       #for i in range(np.len)
       x_standard_normalizer = [];
@@ -136,20 +136,21 @@ class ARIMA_Stock_Price_Prediction:
       mean_x = self.Mean(x);
       std_x = self.Standard_Deviation(x);
       sum_std = 0.0;
+      Gaussian_Mean = [];
       for i in range(len(x)):
-         sum_std = sum_std + sum(math.pow((x[i]- mean_x),2));
-      Gaussian_Mean = (1/math.sqrt(2*math.pi)*std_x)*(math.exp((sum_std*-1)/(2*math.pow(std_x,2))));
+         sum_std = sum_std + math.pow((x[i]- mean_x),2);
+         Gaussian_Mean.append((1/math.sqrt(2*math.pi)*std_x)*(math.exp((sum_std*-1)/(2*math.pow(std_x,2)))));
       return(Gaussian_Mean);
 
    def Gaussian_Median(self,x):
       median_x = self.Median_Newprice(x);
       std_x = self.Standard_Deviation(x);
       sum_std = 0.0;
+      Gaussian_Median = [];
       for i in range(len(x)):
-         sum_std = sum_std + sum(math.pow((x[i]-median_x),2));
-      Gaussian_Median = (1/math.sqrt(2*math.pi)*std_x)*(math.exp((sum_std*-1)/(2*math.pow(std_x,2))));
+         sum_std = sum_std + math.pow((x[i]-median_x),2);
+         Gaussian_Median.append((1/math.sqrt(2*math.pi)*std_x)*(math.exp((sum_std*-1)/(2*math.pow(std_x,2)))));
       return(Gaussian_Median);
-
 
    def Statistical_Methods(self,x,i,k,calling,sorted_newprice):
       #plot_scatter = self.Plot_Scatter(Newprice_Sample,Volume_Sample);
@@ -179,7 +180,7 @@ class ARIMA_Stock_Price_Prediction:
       else:
          print("Enter the calling method for expected statistical method");
          return(0);
-      return(0);   
+      return(0);
 
    def __init__(self):
       Stock_Data = pd.read_csv('/content/Stock_Files/JPM.csv',delimiter=',');
@@ -234,5 +235,3 @@ class ARIMA_Stock_Price_Prediction:
       return(None);
 
 ARIMA_Stock_Price_Predict = ARIMA_Stock_Price_Prediction();
-
-
