@@ -13,7 +13,7 @@ from statsmodels.stats.diagnostic import acorr_ljungbox;
 
 class ARIMA_Stock_Price_Prediction:
    #def ARIMA_Stock_Price_Computation(self,endog: Union[pd.Series, list], order_list: list, d: int)-> pd.DataFrame:
-   def ARIMA_Stock_Price_Computation(self,endog,order_list,d):
+   def ARIMA_Stock_Price_Computation(self,endog,order_list,d,Test_Sample,Date_Ticker_Value):
       results = [];
       #order = [];
       #i = 0;
@@ -45,11 +45,37 @@ class ARIMA_Stock_Price_Prediction:
       #result_df = result_df.sort_values(by='AIC',ascending=True).reset_index(drop=True);
       #print("\n\n Result Data Frame is: \n\n====================\n",result_df)
       print(model.summary());
-      model.plot_diagnostics(lags=10,figsize=(10,8));
+      model.plot_diagnostics(lags=6,figsize=(10,8));
       residuals = model.resid;
       #lbvalue, pvalue =
       print(acorr_ljungbox(residuals, np.arange(1, 11, 1)));
       #print(pvalue,lbvalue);
+      results = model;
+      # 4. Review statistical diagnostic properties
+      print(results.summary());
+
+      # 5. Out-of-sample Forecasting (Requires future exogenous features)
+      # Steps must match the shape of the test exogenous data
+      forecast_steps = 6
+      forecast_object = results.get_forecast(steps=forecast_steps, exog=Test_Sample)
+
+      # Extract predicted mean values and confidence intervals
+      forecast_mean = forecast_object.predicted_mean
+      confidence_intervals = forecast_object.conf_int(alpha=0.05) # 95% CI
+
+      # 6. Visualize results
+      plt.figure(figsize=(10, 5))
+      plt.plot(Date_Ticker_Value, endog, label="Training Dataset")
+      plt.plot(Date_Ticker_Value, Test_Sample, label="True Test", color="gray")
+      plt.plot(forecast_mean.index, forecast_mean, label="Forecast", color="red")
+      plt.fill_between(
+      confidence_intervals.index,
+      confidence_intervals.iloc[:, 0],
+      confidence_intervals.iloc[:, 1],
+      color="pink", alpha=0.3, label="95% CI"
+      )
+      plt.legend()
+      plt.show();
       return (None);
       #return();
 
@@ -61,7 +87,7 @@ class ARIMA_Stock_Price_Prediction:
       fig, ax = plt.subplots()
       #print("Length of X and Y are",len(X),len(Y));
       ax.plot(Y,X);
-      ax.set_xlabel('Date Ranges from 2019-11-07 to 2020-04-01')
+      ax.set_xlabel('Date')
       ax.set_ylabel('Stock Ticker value');
 
       #plt.xticks(np.arange(0, 98, 1), [1960, 1962, 1964, 1966, 1968, 1970, 1972,  1974, 1976, 1978, 1980]);
@@ -90,7 +116,6 @@ class ARIMA_Stock_Price_Prediction:
       for i in range(len(x)):
          sum_std = sum_std + math.pow((x[i]- mean_x),2);
       std_x = math.sqrt(sum_std/(len(x)-1));
-      print("Standard Deviation value is:\n",std_x);
       return(std_x);
 
    def Mean(self,x):
@@ -98,7 +123,6 @@ class ARIMA_Stock_Price_Prediction:
       for i in range(len(x)):
          sum = sum + x[i];
       mean = sum/len(x);
-      print("Mean value is: \n",mean);
       return(mean);
 
    def sort_Newprice(self,Newprice,i,k,sorted_newprice):
@@ -142,7 +166,6 @@ class ARIMA_Stock_Price_Prediction:
       for i in range(len(x)):
          sum_std = sum_std + math.pow((x[i]- mean_x),2);
          Gaussian_Mean.append((1/math.sqrt(2*math.pi)*std_x)*(math.exp((sum_std*-1)/(2*math.pow(std_x,2)))));
-      
       return(Gaussian_Mean);
 
    def Gaussian_Median(self,x):
@@ -202,13 +225,13 @@ class ARIMA_Stock_Price_Prediction:
 
       Median_Price = [];
       #Median_Price = SVM_Implementation.Median_Price(Avg_Price);
-      #print("Exponential plots Avg price is: ",Avg_Price[10000:]);
+      print("Exponential plots Avg price is: ",Avg_Price[10000:]);
       #self.exponential_plot(Avg_Price[10000:],Date_Ticker_Value[10000:]);
       print("\n\n\n ================================================")
       Stationary_factor = 0;
       Stationary_factor = int(input("Enter an integer value to represent Order of Differenciation process"));
 
-      '''if(Stationary_factor == 0):
+      if(Stationary_factor == 0):
          self.ADF_Test(Avg_Price);
          self.exponential_plot(Avg_Price[10000:],Date_Ticker_Value[10000:]);
       elif(Stationary_factor == 1):
@@ -221,47 +244,20 @@ class ARIMA_Stock_Price_Prediction:
          self.ADF_Test(Avg_Price);
          self.exponential_plot(Avg_Price[10000:],Date_Ticker_Value[10002:]);
       else:
-         return(None);'''
+         return(None);
       #Avg_Price = Avg_Price[10000:];
-      #Training_Sample = pd.Series(Avg_Price[10000:]); #[pd.Series(Date_Ticker_Value[10000:]),list(Avg_Price[10000:])];
-      #Test_Sample = Avg_Price[10000:];
+      Training_Sample = pd.Series(Avg_Price[10000:]); #[pd.Series(Date_Ticker_Value[10000:]),list(Avg_Price[10000:])];
+      Test_Sample = Avg_Price[10000:];
       d = 1;
-      Order_list = (1,d,1)
+      Order_list = (1,d,1);
       #self.ARIMA_Stock_Price_Computation(Training_Sample, Order_list, d);
       median_price = [];
       calling = str(input("Enter a Statistical method as one of the selections. 1. Mean 2. Median 3. Standard_Normalizer 4. Gaussian_Mean 5. Gaussian_Median"));
       Sorted_Newprice = [];
       i = 0; k = 0;
       statistical_method_result = [];
-      statistical_method_result = self.Statistical_Methods(list(Avg_Price[10000:]),i,k,calling,Sorted_Newprice);
-      Avg_Price = list(Avg_Price[10000:]);
-      print("Avg_Price list is:\n",Avg_Price,len(statistical_method_result));
-      #j = 10000;
-      Gaussian_Measure = [];
-      for i in range(len(statistical_method_result)):
-         Gaussian_Measure.insert(i,np.abs(statistical_method_result[i]-Avg_Price[i]));
-         #j = j+1;
-      #Avg_Price = statistical_method_result;
-      print("Avg_Price list is:\n",Gaussian_Measure,"Length of Avg price is: \n",len(Gaussian_Measure));
-      Avg_Price = [];
-      Avg_Price = Gaussian_Measure;
-      if(Stationary_factor == 0):
-         self.ADF_Test(Avg_Price);
-         self.exponential_plot(Avg_Price,Date_Ticker_Value[10000:]);
-      elif(Stationary_factor == 1):
-         Avg_Price = np.diff(Avg_Price,n=1);
-         #print("Avg Stationary Price values are: ",Avg_Price,len(Date_Ticker_Value[10000:]),"\n\n Length of Avg price Data smaple is:",len(Avg_Price));
-         self.ADF_Test(Avg_Price);
-         self.exponential_plot(Avg_Price,Date_Ticker_Value[10001:]);
-      elif(Stationary_factor == 2):
-         Avg_Price = np.diff(Avg_Price,n=2);
-         self.ADF_Test(Avg_Price);
-         print("Avg price list length: \n",len(Avg_Price));
-         self.exponential_plot(Avg_Price,Date_Ticker_Value[10002:]);
-      else:
-         return(None);
-      statistical_method_result = Avg_Price;
-      self.ARIMA_Stock_Price_Computation(pd.Series(statistical_method_result),Order_list,d);
+      statistical_method_result = self.Statistical_Methods(Avg_Price[10000:],i,k,calling,Sorted_Newprice);
+      self.ARIMA_Stock_Price_Computation(pd.Series(statistical_method_result),Order_list,d,Test_Sample,Date_Ticker_Value[10001:]);
       return(None);
 
 ARIMA_Stock_Price_Predict = ARIMA_Stock_Price_Prediction();
